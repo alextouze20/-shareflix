@@ -1,11 +1,25 @@
-<div>
-<%= simple_form_for :person, url: profile_path(@user.id), method: :patch do |f| %>
-  <%= f.input :first_name %><br />
-  <%= f.input :last_name %>
-  <%= f.input :country, collection: ["France"] %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="title-header need-smaller-subscription" id="header-smaller">
+</div>
 
-<%= link_to 'Go back', profile_path(@user.id) %>
+<div class="w-50 d-flex justify-content-center align-items-center flex-column m-auto">
+  <h2 class="edit">Edit my profile</h2>
+  <div class="w-100 pb-3">
+  <%= simple_form_for :person, url: profile_path(@user.id), method: :patch do |f| %>
+    <%= f.input :first_name,
+                label: false,
+                input_html: {value: @user.first_name} %>
+    <%= f.input :last_name,
+                label: false,
+                input_html: {value: @user.last_name} %>
+    <%= f.input :country,
+                label: false,
+                include_blank: false,
+                collection: [@user.country] %>
+    <%= f.input :photo, as: :file, label: "📸 Upload photo", input_html: {class: 'hidden'} %>
+  </div>
+    <%= f.submit %>
+  <% end %>
+  <%= link_to 'Go back', profile_path(@user.id)%>
+  <p>
+  </p>
 </div>

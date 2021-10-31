@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
   def update
     user = User.find(params[:id])
     authorize user
+    # raise
     strong_user[:id] = params[:id]
     user.update(strong_user)
     redirect_to profile_path(params[:id])
